@@ -1,6 +1,6 @@
 import { createServer } from 'http';
 
-const PORT = process.env.PORT || 30000;
+const PORT = process.env.PORT || 3000;
 
 const server = createServer((req, res) => {
   if (req.url === '/' && req.method === 'GET') {
