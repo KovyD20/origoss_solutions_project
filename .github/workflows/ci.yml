@@ -19,5 +19,6 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:latest .
-          docker push ghcr.io/${{ github.repository }}:latest
+          IMAGE=$(echo "ghcr.io/${{ github.repository }}:latest" | tr '[:upper:]' '[:lower:]')
+          docker build -t $IMAGE .
+          docker push $IMAGE
