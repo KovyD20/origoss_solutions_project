@@ -4,6 +4,9 @@ on:
   push:
     branches: [master]
 
+env:
+  IMAGE_NAME: origoss-hello-world-go
+
 permissions:
   contents: read
   packages: write
@@ -19,6 +22,6 @@ jobs:
 
       - name: Build and push
         run: |
-          IMAGE=$(echo "ghcr.io/${{ github.repository }}:latest" | tr '[:upper:]' '[:lower:]')
+          IMAGE="ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest"
           docker build -t $IMAGE .
           docker push $IMAGE
