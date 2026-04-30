@@ -22,6 +22,7 @@ jobs:
 
       - name: Build and push
         run: |
-          IMAGE="ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest"
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE="ghcr.io/$OWNER/${{ env.IMAGE_NAME }}:latest"
           docker build -t $IMAGE .
           docker push $IMAGE
