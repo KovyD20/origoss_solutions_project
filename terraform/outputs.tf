@@ -1,7 +1,11 @@
-output "service_name" {
-  value = kubernetes_service.hello_world.metadata[0].name
+output "cluster_name" {
+  value = module.eks.cluster_name
 }
 
-output "node_port" {
-  value = kubernetes_service.hello_world.spec[0].port[0].node_port
+output "cluster_endpoint" {
+  value = module.eks.cluster_endpoint
+}
+
+output "load_balancer_hostname" {
+  value = kubernetes_service.hello_world.status[0].load_balancer[0].ingress[0].hostname
 }
