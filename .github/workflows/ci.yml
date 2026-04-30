@@ -24,5 +24,5 @@ jobs:
         run: |
           OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
           IMAGE="ghcr.io/$OWNER/${{ env.IMAGE_NAME }}:latest"
-          docker build -t $IMAGE .
+          docker build -t $IMAGE ./backend
           docker push $IMAGE
