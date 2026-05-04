@@ -10,14 +10,3 @@ variable "cluster_name" {
   default     = "origoss-cluster"
 }
 
-variable "image" {
-  description = "Docker image to deploy"
-  type        = string
-  default     = "ghcr.io/kovyd20/origoss-hello-world-go:latest"
-}
-
-variable "replicas" {
-  description = "Number of pod replicas"
-  type        = number
-  default     = 1
-}

@@ -278,8 +278,6 @@ curl http://<hostname>
 |----------|---------|-------------|
 | `aws_region` | `eu-central-1` | AWS region |
 | `cluster_name` | `origoss-cluster` | EKS cluster name |
-| `image` | `ghcr.io/kovyd20/origoss-hello-world-go:latest` | Container image |
-| `replicas` | `1` | Number of pod replicas |
 
 #### Tear down
 
