@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: ghcr.io/kovyd20/origoss_solutions_project:latest
+          image: ghcr.io/kovyd20/origoss-hello-world-go:latest
           ports:
             - containerPort: 3000
           resources:

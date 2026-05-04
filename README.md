@@ -295,9 +295,16 @@ terraform destroy
 
 ## Contact
 
-Dániel Kövy — kovy.d20@gmail.com
+Kövy Dániel - (Daniel Koevy) 
 
-Project: [https://github.com/KovyD20/origoss_solutions_project](https://github.com/KovyD20/origoss_solutions_project)
+GitHub: https://github.com/KovyD20
+
+LinkedIn: <https://www.linkedin.com/in/d%C3%A1niel-k%C3%B6vy-62129b324/>
+
+E-mail: kovy.d20@gmail.com
+
+Project Link: 
+https://github.com/KovyD20/origoss_solutions_project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
