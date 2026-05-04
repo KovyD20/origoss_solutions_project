@@ -24,15 +24,3 @@ spec:
             limits:
               cpu: 100m
               memory: 128Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hello-world
-spec:
-  selector:
-    app: hello-world
-  type: NodePort
-  ports:
-    - port: 80
-      targetPort: 3000

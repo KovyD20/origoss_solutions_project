@@ -186,9 +186,7 @@ The image is published to **GitHub Container Registry (ghcr.io)** and is publicl
 
 ### 4 — Kubernetes
 
-**File:** [`k8s/deployment.yaml`](k8s/deployment.yaml)
-
-Two resources in a single manifest:
+**Files:** [`k8s/deployment.yaml`](k8s/deployment.yaml), [`k8s/service.yaml`](k8s/service.yaml)
 
 **Deployment** (`hello-world`):
 - 1 replica
@@ -197,16 +195,14 @@ Two resources in a single manifest:
 - Resource limits: `100m` CPU / `128Mi` memory
 
 **Service** (`hello-world`):
-- Type: `NodePort` (for standalone cluster testing)
+- Type: `LoadBalancer` (creates an AWS ELB on EKS)
 - Port mapping: `80` → `3000`
 
 Apply to any cluster:
 ```sh
-kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/deployment.yaml -f k8s/service.yaml
 kubectl get svc hello-world
 ```
-
-> **Note:** When deploying via Terraform (Exercise 5), the service type is changed to `LoadBalancer` to expose the app through an AWS ELB.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -236,7 +232,7 @@ AWS (eu-central-1)
 
 #### Kubernetes resources (via Terraform)
 
-- `Deployment` — 1 replica, configurable via `var.replicas`
+- `Deployment` — 1 replica, defined in `k8s/deployment.yaml`
 - `Service` — type `LoadBalancer`, exposes port 80 → 3000 through an AWS ELB
 
 #### Providers
@@ -256,12 +252,14 @@ aws configure
 cd terraform
 terraform init
 
-# 3. Review the plan
-terraform plan
-
-# 4. Apply (this creates the VPC, EKS cluster, and deploys the app)
-terraform apply
+# 3. Phase 1 — provision infrastructure only
+# kubernetes_manifest requires a live cluster at plan time,
+# so the EKS cluster must exist before the full plan runs.
+terraform apply -target=module.vpc -target=module.eks
 # Takes ~15 minutes for EKS to become ready
+
+# 4. Phase 2 — deploy the application
+terraform apply
 
 # 5. Update kubeconfig to point to the new cluster
 aws eks update-kubeconfig \
